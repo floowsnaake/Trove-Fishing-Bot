@@ -1,4 +1,6 @@
-This is my other post about Trove Fishing Bot but this time its 100% me made :p
+#Simple Fisher Trove
+
+This is my Trove Fishing Bot 100% me made :p
  
 Note that you will need to edit this your self:
  
