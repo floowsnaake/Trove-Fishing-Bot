@@ -1,28 +1,34 @@
 
 /*
-Simple Fisher v2
+Script name: Shark Night
+File name.Shark Night.ahk
+Made by: FloowSnaake/SnowFlake
+Date/time: 27/08/2015 9:44 p.m
+Autohtkey version: 1.1.22.04 - August 19, 2015
+Tested on: Windows 7 64 bit
+Trove version/Patch: 7/14/15 // Not the Steam version
 
 This is my other post about Trove Fishing Bot but this time its 100% me made :)
 
 Note that you will need to edit this your self:
 
-Adress = 0x106345330 ; Enter your Dynamic/static Pointer Address here. no offsets is needed only the address for when there is a fish on your hook and the value turns int to 1.
+Address = 0x106345330 ; Enter your Dynamic/static Pointer Address here. no offsets is needed only the address for when there is a fish on your hook and the value turns into to 1.
 
 Baits = 96 ; Enter the amount of Baits you have here, how many baits you have in the inventory when the bot starts.
 §:: ; Enter the Hotkey you want to use to start the Bot.
 
-also note that dropping boots isn't something i use so i don't have it in the code, you could make a simple image search/pixel search for it to drag out all the boots you fish up if you want.
+Also note that dropping boots isn't something I use so I don't have it in the code, you could make a simple image search/pixel search for it to drag out all the boots you fish up if you want.
 
 I'll show you guys few tips to NEVER (just unlucky guys get banned) get banned using fishing bot.
 - Never use fishing bot at the HUB, it is stupid.
 - Do it far away from the spawn point, somewhere at no one will see you.
-- Enable the option ''Appear Offline'' at the Settings/Social that way no one can follow you.
+- Enable the option 'appear Offline'' at the Settings/Social that way no one can follow you.
 - Don't trade high amounts of Glim at the trade post, drop it or do in small parts.
-- Don't say ''Selling 500k of Glim'' at the chat, it's very suspicious.
+- Don't say 'selling 500k of Glim'' at the chat, it's very suspicious.
 - Try to use fishing bot at a private club world (make your self a club), its better to transfer between accounts too.
 
-thanks to : Pardieiro & krazyshank for the Anti ban tips.
-Also HUGE thank you to Geekdude,Tidbit and Xtra for helping me/learning me how to read pointers with Autohtokey and how to make my code faser,look nicer and easier to read!
+Thanks to : Pardieiro & krazyshank for the Anti ban tips.
+Also HUGE thank you to Geekdude,Tidbit and Xtra for helping me/learning me how to read pointers with Autohtokey and how to make my code faster,look nicer and easier to read!
 
 Watch this Youtube Video on how to find Static/Base Pointers in the game to use for the fishing bot if you don't want to use Dynamic Pointers:
 
@@ -32,30 +38,32 @@ Also note that more information can be found on my Github or MPGH Page :)
 Github: https://github.com/floowsnaake/Trove-Fishing-Bot
 MPGH: http://www.mpgh.net/forum/showthread.php?t=1010460
 
-How to use the code/Simple Fisher Trove:
+How to use the code/Shark Night:
 1) Download Autohotkey (http://ahkscript.org/download/ahk-install.exe)
 2) Install Autohotkey 64 or 32 Bits.
 3) Copy the Code.
 4) Paste it in to notepad or any other text editor you use
-5) Save it as Simple Fisher Trove.ahk
-6) Dubble click at "Simple Fisher Trove.ahk"
+5) Save it as Shark Night.ahk
+6) Double click at "Shark Night.ahk"
 7) Now its running, you should see a small icon with a "H" on it in the corner of the Taskbar/Startbar.
 
-more information about how to make a script and how to downland Autohotkey can be found in this Link (http://ahkscript.org/docs/Tutorial.htm#s11)
+More information about how to make a script and how to download Autohotkey can be found in this Link (http://ahkscript.org/docs/Tutorial.htm#s11)
 
 If you need any help with the installation of Autohtokey or anything else don't be afraid to send me a Personal message
 
+BOT in action:
+http://puu.sh/jQthl/2014fcaf39.jpg
 
-whats new in version 2?
+What's new in version 2/Shark Night?
 
 *Added
-Auto savage/loot collect that works with a timer so you can set the timer you want to to savage /loot collect your inveotry
+Auto savage/loot collect that works with a timer so you can set the timer you want to to savage /loot collect your inventory.
 
 *Alpha/test Added
-After the  every item in the inventory have been savaged it will try to drop all the iteams left in the invertory things that you can/could not savage.   
+After the  every item in the inventory have been savaged it will try to drop all the items left in the inventory things that you can/could not savage.   
 
 *changed:
-removed the old boot gui text, added new comments on how the cod works,
+removed the old boot GUI text, added new comments on how the cod works, new name from Trove simple fish to Shark Night.
 */
 
 IF NOT A_IsAdmin
@@ -70,9 +78,9 @@ ProcessName := "trove.exe"
 hwnd := MemoryOpenFromName(ProcessName)
 
 ; YOU NEED TO EDIT THESE  3 LINES FOR THE BOT TO WORK!!!!
-Adress = 0x ; Enter your Pointer Adress here like this for example, 065D8D00.
-Baits = 43 ; Enter the amount of Baits you have here.
-SalvageTimer =  30000 ; 30 secounds.
+Adress = 0x06468D00 ; Enter your Pointer Adress here like this for example, 065D8D00.
+Baits = 244 ; Enter the amount of Baits you have here.
+SalvageTimer =  1800000 ; 30 Minutes
 
 FishCatched = 0
 
@@ -157,18 +165,61 @@ MemoryRead(hwnd, address, datatype="int", length=4, offset=0)
 Salvagtion_INV()
 {
 	
-Horz = 112
+Row1 = 480
+Horz = 370
+RowMove = 30
 
-Row1 = 435
-Row2 = 460
-Row3 = 485
-Row4 = 510
-Row5 = 535
+MouseMove, %Row1%, %Horz%
+click Right down
+Sleep, 80
+click Right up
+Loop,9 ; 1  first rows DOWN
+{
+MouseMove, 0, %RowMove%, 1, R
+click Right down
+Sleep, 80
+click Right up
+}
+Row1 += 30
 
-RowMove = 25
+MouseMove, %Row1%, %Horz%
+click Right down
+Sleep, 80
+click Right up
+Loop,8 ; 1  first rows DOWN
+{
+MouseMove, 0, %RowMove%, 1, R
+click Right down
+Sleep, 80
+click Right up
+}
+Row1 += 30
 
-Boots_Color_Array := [0x4A6D7D,0x507687,0x547C8E,0x4B6E7E,0x3A3A39,0x393938,0x52504D,0x3A3A39,0x3F3830,0x496B7B]
+MouseMove, %Row1%, %Horz%
+click Right down
+Sleep, 80
+click Right up
+Loop,8 ; 1  first rows DOWN
+{
+MouseMove, 0, %RowMove%, 1, R
+click Right down
+Sleep, 80
+click Right up
+}
+Row1 += 30
 
+MouseMove, %Row1%, %Horz%
+click Right down
+Sleep, 80
+click Right up
+Loop,8 ; 1  first rows DOWN
+{
+MouseMove, 0, %RowMove%, 1, R
+click Right down
+Sleep, 80
+click Right up
+}
+Row1 += 30
 
 MouseMove, %Row1%, %Horz%
 click Right down
@@ -182,77 +233,10 @@ Sleep, 80
 click Right up
 }
 
-MouseMove, %Row2%, %Horz%
-click Right down
-Sleep, 80
-click Right up
-Loop,8 ; 1  first rows DOWN
-{
-MouseMove, 0, %RowMove%, 1, R
-click Right down
-Sleep, 80
-click Right up
-}
-
-MouseMove, %Row3%, %Horz%
-click Right down
-Sleep, 80
-click Right up
-Loop,8 ; 1  first rows DOWN
-{
-MouseMove, 0, %RowMove%, 1, R
-click Right down
-Sleep, 80
-click Right up
-}
-
-MouseMove, %Row4%, %Horz%
-click Right down
-Sleep, 80
-click Right up
-Loop,8 ; 1  first rows DOWN
-{
-MouseMove, 0, %RowMove%, 1, R
-click Right down
-Sleep, 80
-click Right up
-}
-
-MouseMove, %Row5%, %Horz%
-click Right down
-Sleep, 80
-click Right up
-Loop,8 ; 1  first rows DOWN
-{
-MouseMove, 0, %RowMove%, 1, R
-click Right down
-Sleep, 80
-click Right up
-}
-
 Sleep, 1000
-click 92, 374 ; savage button 
-Sleep, 200
-click, 255, 233 ; yes/confirm
+click 97, 662 ; savage button /Accept
 Sleep, 1000
-
-CoordMode, Pixel, Screen
-ImageSearch, FoundX, FoundY, 411, 89, 557, 317, C:\Users\Snow\Music\FloowSnaake\adabo-ahkMessenger-fabecdd\adabo-ahkMessenger-fabecdd\tidiab\lib AHK\Screen_20150827034557.png
-If ErrorLevel = 0
-{
-; clean inv
-}
-
-Loop % Boots_Color_Array.MaxIndex()
-{
-CoordMode, Pixel, Screen
-PixelSearch, BootX,BootY, 427, 104, 551, 293,Boots_Color_Array[A_Index], 0, Fast RGB
-If ErrorLevel = 0
-{
- MsgBox boot found
-;Click, %BootX%, %BootY% Left, 1
-}
-}
+click, 275, 510 ; confirm/YES!
 
 }
 return
